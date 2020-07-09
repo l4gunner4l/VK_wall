@@ -29,6 +29,7 @@ data class Post(
 ){
 
 
+
     fun getFormattedDate(): String {
         val interval = Date().time - postDate
         return when {
@@ -55,6 +56,14 @@ data class Post(
                 SimpleDateFormat("dd.MM.yyyy HH:mm").format(postDate)
         }
 
+    }
+
+    fun cutPostText(): String? {
+        return when {
+            postText == null -> null
+            postText.length > 50 -> postText.substring(0, 50)+"..."
+            else -> postText
+        }
     }
 
     companion object {

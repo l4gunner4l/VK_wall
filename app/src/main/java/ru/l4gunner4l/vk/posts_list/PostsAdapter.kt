@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -67,8 +68,11 @@ class PostsAdapter(
                 .into(avatarIV)
             nameTV.text = post.userName
             dateTV.text = post.getFormattedDate()
-            textTV.text = post.postText
-            Picasso.get()
+            if (post.postText == null) textTV.visibility = GONE
+            else textTV.text = post.cutPostText()
+
+            if (post.postImage == null) imageIV.visibility = GONE
+            else Picasso.get()
                 .load(post.postImage)
                 .into(imageIV)
 
