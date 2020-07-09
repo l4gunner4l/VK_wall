@@ -104,7 +104,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/item_post_btn_like"
                 style="@style/PostBtnStyle"
                 android:src="@drawable/ic_favorite" />
@@ -117,13 +117,13 @@
 
         <LinearLayout
             android:id="@+id/comments_container"
+            style="@style/PostItemsContainerStyle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/reposts_container"
             app:layout_constraintStart_toEndOf="@+id/likes_container"
-            app:layout_constraintTop_toBottomOf="@+id/view"
-            style="@style/PostItemsContainerStyle">
+            app:layout_constraintTop_toBottomOf="@+id/view">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/item_post_btn_comment"
                 style="@style/PostBtnStyle"
                 android:src="@drawable/ic_comment" />
@@ -136,21 +136,21 @@
 
         <LinearLayout
             android:id="@+id/reposts_container"
+            style="@style/PostItemsContainerStyle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/comments_container"
-            app:layout_constraintTop_toBottomOf="@+id/view"
-            style="@style/PostItemsContainerStyle">
+            app:layout_constraintTop_toBottomOf="@+id/view">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/item_post_btn_repost"
-                android:src="@drawable/ic_campaign"
-                style="@style/PostBtnStyle" />
+                style="@style/PostBtnStyle"
+                android:src="@drawable/ic_campaign" />
 
             <TextView
                 android:id="@+id/item_post_tv_reposts_count"
-                tools:text="123"
-                style="@style/PostCountItemsTextViewStyle" />
+                style="@style/PostCountItemsTextViewStyle"
+                tools:text="123" />
         </LinearLayout>
 
 

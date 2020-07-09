@@ -23,22 +23,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_posts"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:itemCount="10"
             tools:listitem="@layout/item_post" />
-        <TextView
-            android:id="@+id/tv_list_empty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/list_is_empty"
-            android:textColor="@color/color_text_dark" />
-
     </androidx.core.widget.NestedScrollView>
 
-
+    <TextView
+        android:id="@+id/tv_list_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/list_is_empty"
+        android:textColor="@color/color_text_dark" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
