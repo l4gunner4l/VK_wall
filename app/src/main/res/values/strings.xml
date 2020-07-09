@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">VK</string>
+    <string name="list_is_empty">Список пуст!</string>
+</resources>
