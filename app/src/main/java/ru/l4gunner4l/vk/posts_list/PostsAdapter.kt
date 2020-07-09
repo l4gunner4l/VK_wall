@@ -1,14 +1,17 @@
 package ru.l4gunner4l.vk.posts_list
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.item_post.*
 import ru.l4gunner4l.vk.R
 import ru.l4gunner4l.vk.model.Post
 
@@ -68,10 +71,22 @@ class PostsAdapter(
             Picasso.get()
                 .load(post.postImage)
                 .into(imageIV)
-            likeBtn.setColorFilter(
-                if (post.isUserLike) R.color.color_tint_like_active
-                else R.color.color_tint_passive
-            )
+
+            if (post.isUserLike) {
+                Log.i("M_MAIN", "adapter - likeBtn.setColorFilter(color_tint_like_active)")
+                likeBtn.setColorFilter(
+                    ContextCompat.getColor(ctx, R.color.color_tint_like_active),
+                    android.graphics.PorterDuff.Mode.SRC_IN
+                )
+            }
+            else {
+                Log.i("M_MAIN", "adapter - likeBtn.setColorFilter(color_tint_passive)")
+                likeBtn.setColorFilter(
+                    ContextCompat.getColor(ctx, R.color.color_tint_passive),
+                    android.graphics.PorterDuff.Mode.SRC_IN
+                )
+            }
+
             likesCountTV.text = post.likesCount.toString()
             commentsCountTV.text = post.commentsCount.toString()
             repostsCountTV.text = post.sharesCount.toString()

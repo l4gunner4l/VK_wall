@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -48,13 +49,11 @@ class PostListActivity : AppCompatActivity() {
 
             override fun onLikeClick(position: Int) {
                 toast("Click on LIKE post #$position")
-                posts[position]
+
                 if (posts[position].isUserLike){
-                    //item_post_btn_like.setColorFilter(R.color.color_tint_passive)
                     posts[position].isUserLike = false
                     posts[position].likesCount--
                 } else {
-                    //item_post_btn_like.setColorFilter(R.color.color_tint_like_active)
                     posts[position].isUserLike = true
                     posts[position].likesCount++
                 }
