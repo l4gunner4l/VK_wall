@@ -143,12 +143,12 @@
             style="@style/PostItemsContainerStyle">
 
             <ImageButton
-                android:id="@+id/item_post_tv_reposts_count"
+                android:id="@+id/item_post_btn_repost"
                 android:src="@drawable/ic_campaign"
                 style="@style/PostBtnStyle" />
 
             <TextView
-                android:id="@+id/item_post_tv_repost"
+                android:id="@+id/item_post_tv_reposts_count"
                 tools:text="123"
                 style="@style/PostCountItemsTextViewStyle" />
         </LinearLayout>
