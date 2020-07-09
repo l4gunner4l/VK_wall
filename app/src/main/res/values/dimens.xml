@@ -3,9 +3,18 @@
     <dimen name="item_card_radius">8dp</dimen>
     <dimen name="item_card_elevation">8dp</dimen>
     <dimen name="item_card_margin">8dp</dimen>
+
     <dimen name="item_avatar_size">40dp</dimen>
+
     <dimen name="text_size_medium">14sp</dimen>
     <dimen name="text_size_small">12sp</dimen>
+
     <dimen name="item_view_height">1dp</dimen>
     <dimen name="item_post_btn_padding">4dp</dimen>
+
+    <dimen name="margin_big">16dp</dimen>
+    <dimen name="margin_medium">8dp</dimen>
+    <dimen name="margin_small">4dp</dimen>
+    <dimen name="margin_tiny">2dp</dimen>
+    <dimen name="margin_zero">0dp</dimen>
 </resources>
