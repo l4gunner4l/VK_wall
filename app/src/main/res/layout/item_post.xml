@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/item_card_margin"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="@dimen/item_card_radius"
+    app:cardElevation="@dimen/item_card_elevation">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/item_post_avatar"
+            android:layout_width="@dimen/item_avatar_size"
+            android:layout_height="@dimen/item_avatar_size"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/image" />
+
+        <TextView
+            android:id="@+id/item_post_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:lines="1"
+            android:textColor="@color/color_text_dark"
+            android:textSize="@dimen/text_size_medium"
+            app:layout_constraintStart_toEndOf="@+id/item_post_avatar"
+            app:layout_constraintTop_toTopOf="@+id/item_post_avatar"
+            tools:text="Nikola Mikhaylov" />
+
+        <TextView
+            android:id="@+id/item_post_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/color_text_light"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintStart_toStartOf="@+id/item_post_name"
+            app:layout_constraintTop_toBottomOf="@+id/item_post_name"
+            tools:text="27 June 2000" />
+
+        <TextView
+            android:id="@+id/item_post_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:textColor="@color/color_text_dark"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/item_post_avatar"
+            app:layout_constraintTop_toBottomOf="@+id/item_post_avatar"
+            tools:text="Условия, которые необходимо выполнить:
+Все ресурсы: строки, отступы, цвета должны быть оформлены через ресурсы, хардкод не принимается. Подробнее о ресурсах в приложении.
+Не надо весь код приложения оставлять в методе onCreate(...). Не бойтесь делить приложение на методы.
+Для каждого экрана реализовать отдельное Activity.
+В JSON-е есть поле “is_user_like”. Оно обозначает лайкнул пользователь пост или нет. В случае, если поле true, то необходимо отобразить кнопку лайка красным цветом, в обратном случае сером. Для того чтобы изменять цвет кнопки можно почитать про аттрибут tint у ImageView или же про метод setColorFilter()
+Добавить обработку нажатия на кнопку лайк на оба экрана. Если пользователь уже “лайкнул” пост ранее, то иконка становится серой, а счётчик уменьшается на единицу. В обратном случае иконка становится розовой, а счётчик лайков увеличивается на единицу. Изменение должно изменять объект с информацией
+" />
+
+        <ImageView
+            android:id="@+id/item_post_image"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_post_text"
+            tools:src="@drawable/photo" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/item_view_height"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/color_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_post_image" />
+
+        <LinearLayout
+            android:id="@+id/likes_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/comments_container"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view">
+
+            <ImageButton
+                android:id="@+id/item_post_btn_like"
+                style="@style/PostBtnStyle"
+                android:src="@drawable/ic_favorite" />
+
+            <TextView
+                android:id="@+id/item_post_tv_likes_count"
+                style="@style/PostCountItemsTextViewStyle"
+                tools:text="20" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/comments_container"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/reposts_container"
+            app:layout_constraintStart_toEndOf="@+id/likes_container"
+            app:layout_constraintTop_toBottomOf="@+id/view"
+            style="@style/PostItemsContainerStyle">
+
+            <ImageButton
+                android:id="@+id/item_post_btn_comment"
+                style="@style/PostBtnStyle"
+                android:src="@drawable/ic_comment" />
+
+            <TextView
+                android:id="@+id/item_post_tv_comments_count"
+                style="@style/PostCountItemsTextViewStyle"
+                tools:text="52" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/reposts_container"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/comments_container"
+            app:layout_constraintTop_toBottomOf="@+id/view"
+            style="@style/PostItemsContainerStyle">
+
+            <ImageButton
+                android:id="@+id/item_post_tv_reposts_count"
+                android:src="@drawable/ic_campaign"
+                style="@style/PostBtnStyle" />
+
+            <TextView
+                android:id="@+id/item_post_tv_repost"
+                tools:text="123"
+                style="@style/PostCountItemsTextViewStyle" />
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
