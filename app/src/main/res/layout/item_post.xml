@@ -15,7 +15,7 @@
         android:layout_gravity="top">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/item_post_avatar"
+            android:id="@+id/post_avatar"
             android:layout_width="@dimen/item_avatar_size"
             android:layout_height="@dimen/item_avatar_size"
             android:layout_marginStart="@dimen/margin_big"
@@ -26,30 +26,30 @@
             tools:src="@drawable/image" />
 
         <TextView
-            android:id="@+id/item_post_name"
+            android:id="@+id/post_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_big"
             android:lines="1"
             android:textColor="@color/color_text_dark"
             android:textSize="@dimen/text_size_medium"
-            app:layout_constraintStart_toEndOf="@+id/item_post_avatar"
-            app:layout_constraintTop_toTopOf="@+id/item_post_avatar"
+            app:layout_constraintStart_toEndOf="@+id/post_avatar"
+            app:layout_constraintTop_toTopOf="@+id/post_avatar"
             tools:text="Nikola Mikhaylov" />
 
         <TextView
-            android:id="@+id/item_post_date"
+            android:id="@+id/post_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_small"
             android:textColor="@color/color_text_light"
             android:textSize="@dimen/text_size_small"
-            app:layout_constraintStart_toStartOf="@+id/item_post_name"
-            app:layout_constraintTop_toBottomOf="@+id/item_post_name"
+            app:layout_constraintStart_toStartOf="@+id/post_name"
+            app:layout_constraintTop_toBottomOf="@+id/post_name"
             tools:text="27 June 2000" />
 
         <TextView
-            android:id="@+id/item_post_text"
+            android:id="@+id/post_text"
             android:layout_width="@dimen/margin_zero"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
@@ -57,8 +57,8 @@
             android:textColor="@color/color_text_dark"
             android:textSize="@dimen/text_size_small"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/item_post_avatar"
-            app:layout_constraintTop_toBottomOf="@+id/item_post_avatar"
+            app:layout_constraintStart_toStartOf="@+id/post_avatar"
+            app:layout_constraintTop_toBottomOf="@+id/post_avatar"
             tools:text="Условия, которые необходимо выполнить:
 Все ресурсы: строки, отступы, цвета должны быть оформлены через ресурсы, хардкод не принимается. Подробнее о ресурсах в приложении.
 Не надо весь код приложения оставлять в методе onCreate(...). Не бойтесь делить приложение на методы.
@@ -68,7 +68,7 @@
 " />
 
         <ImageView
-            android:id="@+id/item_post_image"
+            android:id="@+id/post_image"
             android:layout_width="@dimen/margin_zero"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_big"
@@ -78,7 +78,7 @@
             android:scaleType="fitStart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_post_text"
+            app:layout_constraintTop_toBottomOf="@+id/post_text"
             tools:src="@drawable/photo" />
 
         <View
@@ -91,7 +91,7 @@
             android:background="@color/color_post_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_post_image" />
+            app:layout_constraintTop_toBottomOf="@+id/post_image" />
 
         <LinearLayout
             android:id="@+id/likes_container"
@@ -105,12 +105,12 @@
             app:layout_constraintTop_toBottomOf="@+id/view">
 
             <ImageView
-                android:id="@+id/item_post_btn_like"
+                android:id="@+id/post_btn_like"
                 style="@style/PostBtnStyle"
                 android:src="@drawable/ic_favorite" />
 
             <TextView
-                android:id="@+id/item_post_tv_likes_count"
+                android:id="@+id/post_tv_likes_count"
                 style="@style/PostCountItemsTextViewStyle"
                 tools:text="20" />
         </LinearLayout>
@@ -124,12 +124,12 @@
             app:layout_constraintTop_toBottomOf="@+id/view">
 
             <ImageView
-                android:id="@+id/item_post_btn_comment"
+                android:id="@+id/post_btn_comment"
                 style="@style/PostBtnStyle"
                 android:src="@drawable/ic_comment" />
 
             <TextView
-                android:id="@+id/item_post_tv_comments_count"
+                android:id="@+id/post_tv_comments_count"
                 style="@style/PostCountItemsTextViewStyle"
                 tools:text="52" />
         </LinearLayout>
@@ -143,12 +143,12 @@
             app:layout_constraintTop_toBottomOf="@+id/view">
 
             <ImageView
-                android:id="@+id/item_post_btn_repost"
+                android:id="@+id/post_btn_repost"
                 style="@style/PostBtnStyle"
                 android:src="@drawable/ic_campaign" />
 
             <TextView
-                android:id="@+id/item_post_tv_reposts_count"
+                android:id="@+id/post_tv_reposts_count"
                 style="@style/PostCountItemsTextViewStyle"
                 tools:text="123" />
         </LinearLayout>

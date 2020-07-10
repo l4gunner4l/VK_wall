@@ -1,28 +1,31 @@
 package ru.l4gunner4l.vk.posts_list
 
-import androidx.appcompat.app.AppCompatActivity
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_post_list.*
-import kotlinx.android.synthetic.main.item_post.*
 import ru.l4gunner4l.vk.R
 import ru.l4gunner4l.vk.model.Post
+import ru.l4gunner4l.vk.single_post.SinglePostActivity
 import java.io.IOException
 
 class PostListActivity : AppCompatActivity() {
 
     companion object {
+        const val EXTRA_POST = "PostListActivity_EXTRA_POST"
+        const val EXTRA_POSITION = "PostListActivity_EXTRA_POSITION"
         private const val fileName = "vk_posts.json"
+        private const val REQUEST_SINGLE_POST = 123
     }
 
-    private lateinit var posts: List<Post>
+    private lateinit var posts: MutableList<Post>
     private lateinit var adapter: PostsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +34,18 @@ class PostListActivity : AppCompatActivity() {
 
         loadData()
         initView()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_SINGLE_POST && resultCode == Activity.RESULT_OK && data != null) {
+            val newPost = data.getParcelableExtra<Post>(EXTRA_POST) ?: throw NullPointerException("data.getParcelableExtra<Post>(EXTRA_POST) is null")
+            val position = data.getIntExtra(EXTRA_POSITION, -1)
+            if (newPost != posts[position]){
+                posts[position] = newPost
+                adapter.updateItem(position, newPost)
+            }
+        }
     }
 
     private fun initView() {
@@ -42,23 +57,26 @@ class PostListActivity : AppCompatActivity() {
             tv_list_empty.visibility = View.GONE
 
         }
-        adapter = PostsAdapter(this, posts, object : PostsAdapter.PostClickListener{
+        adapter = PostsAdapter(this, posts, object : PostsAdapter.PostClickListener {
             override fun onPostClick(position: Int, v: View?) {
-                toast("Click on post #$position")
+                startActivityForResult(
+                    SinglePostActivity.start(
+                        this@PostListActivity,
+                        position,
+                        posts[position]
+                    ),
+                    REQUEST_SINGLE_POST
+                )
             }
-
             override fun onLikeClick(position: Int) {
-                toast("Click on LIKE post #$position")
-
-                if (posts[position].isUserLike){
+                if (posts[position].isUserLike) {
                     posts[position].isUserLike = false
                     posts[position].likesCount--
                 } else {
                     posts[position].isUserLike = true
                     posts[position].likesCount++
                 }
-                adapter.updatePosts(posts)
-                adapter.notifyItemChanged(position)
+                adapter.updateItem(position, posts[position])
             }
 
         })
@@ -88,7 +106,7 @@ class PostListActivity : AppCompatActivity() {
         return jsonString
     }
 
-    private fun toast(text: String){
+    private fun toast(text: String) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
     }
 }

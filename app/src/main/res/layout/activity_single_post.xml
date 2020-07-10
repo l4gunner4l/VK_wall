@@ -1,9 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".single_post.SinglePostActivity">
+    android:layout_height="wrap_content"
+    android:background="@android:color/white">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            style="@style/ToolbarWithNavStyle"
+            app:layout_scrollFlags="scroll"
+            app:navigationIcon="@drawable/ic_back"
+            app:title="@string/app_name" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="top">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/post_avatar"
+                android:layout_width="@dimen/item_avatar_size"
+                android:layout_height="@dimen/item_avatar_size"
+                android:layout_marginStart="@dimen/margin_big"
+                android:layout_marginTop="@dimen/margin_big"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/image" />
+
+            <TextView
+                android:id="@+id/post_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_big"
+                android:lines="1"
+                android:textColor="@color/color_text_dark"
+                android:textSize="@dimen/text_size_medium"
+                app:layout_constraintStart_toEndOf="@+id/post_avatar"
+                app:layout_constraintTop_toTopOf="@+id/post_avatar"
+                tools:text="Nikola Mikhaylov" />
+
+            <TextView
+                android:id="@+id/post_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:textColor="@color/color_text_light"
+                android:textSize="@dimen/text_size_small"
+                app:layout_constraintStart_toStartOf="@+id/post_name"
+                app:layout_constraintTop_toBottomOf="@+id/post_name"
+                tools:text="27 June 2000" />
+
+            <TextView
+                android:id="@+id/post_text"
+                android:layout_width="@dimen/margin_zero"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginEnd="@dimen/margin_big"
+                android:textColor="@color/color_text_dark"
+                android:textSize="@dimen/text_size_small"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/post_avatar"
+                app:layout_constraintTop_toBottomOf="@+id/post_avatar"
+                tools:text="Условия, которые необходимо выполнить:
+Все ресурсы: строки, отступы, цвета должны быть оформлены через ресурсы, хардкод не принимается. Подробнее о ресурсах в приложении.
+Не надо весь код приложения оставлять в методе onCreate(...). Не бойтесь делить приложение на методы.
+Для каждого экрана реализовать отдельное Activity.
+В JSON-е есть поле “is_user_like”. Оно обозначает лайкнул пользователь пост или нет. В случае, если поле true, то необходимо отобразить кнопку лайка красным цветом, в обратном случае сером. Для того чтобы изменять цвет кнопки можно почитать про аттрибут tint у ImageView или же про метод setColorFilter()
+Добавить обработку нажатия на кнопку лайк на оба экрана. Если пользователь уже “лайкнул” пост ранее, то иконка становится серой, а счётчик уменьшается на единицу. В обратном случае иконка становится розовой, а счётчик лайков увеличивается на единицу. Изменение должно изменять объект с информацией
+" />
+
+            <ImageView
+                android:id="@+id/post_image"
+                android:layout_width="@dimen/margin_zero"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_big"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginEnd="@dimen/margin_big"
+                android:adjustViewBounds="true"
+                android:scaleType="fitStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/post_text"
+                tools:src="@drawable/photo" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="@dimen/margin_zero"
+                android:layout_height="@dimen/item_view_height"
+                android:layout_marginStart="@dimen/margin_big"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginEnd="@dimen/margin_big"
+                android:background="@color/color_post_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/post_image" />
+
+            <LinearLayout
+                android:id="@+id/likes_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/comments_container"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view">
+
+                <ImageView
+                    android:id="@+id/post_btn_like"
+                    style="@style/PostBtnStyle"
+                    android:src="@drawable/ic_favorite" />
+
+                <TextView
+                    android:id="@+id/post_tv_likes_count"
+                    style="@style/PostCountItemsTextViewStyle"
+                    tools:text="20" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/comments_container"
+                style="@style/PostItemsContainerStyle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/reposts_container"
+                app:layout_constraintStart_toEndOf="@+id/likes_container"
+                app:layout_constraintTop_toBottomOf="@+id/view">
+
+                <ImageView
+                    android:id="@+id/post_btn_comment"
+                    style="@style/PostBtnStyle"
+                    android:src="@drawable/ic_comment" />
+
+                <TextView
+                    android:id="@+id/post_tv_comments_count"
+                    style="@style/PostCountItemsTextViewStyle"
+                    tools:text="52" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/reposts_container"
+                style="@style/PostItemsContainerStyle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/comments_container"
+                app:layout_constraintTop_toBottomOf="@+id/view">
+
+                <ImageView
+                    android:id="@+id/post_btn_repost"
+                    style="@style/PostBtnStyle"
+                    android:src="@drawable/ic_campaign" />
+
+                <TextView
+                    android:id="@+id/post_tv_reposts_count"
+                    style="@style/PostCountItemsTextViewStyle"
+                    tools:text="123" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

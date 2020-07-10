@@ -1,5 +1,7 @@
 package ru.l4gunner4l.vk.model
 
+import android.os.Parcel
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import ru.l4gunner4l.vk.utils.TimeUnits
 import java.text.SimpleDateFormat
@@ -26,11 +28,28 @@ data class Post(
     val commentsCount: Int,
     @SerializedName("shares_count")
     val sharesCount: Int
-){
+): Parcelable {
 
 
+    constructor(parcel: Parcel) : this(
+        parcel.readLong(),
+        parcel.readString() ?: "",
+        parcel.readString() ?: "",
+        parcel.readLong(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readByte() != 0.toByte(),
+        parcel.readInt(),
+        parcel.readInt(),
+        parcel.readInt()
+    ) {
+    }
 
     fun getFormattedDate(): String {
+        val SECOND = 1000L
+        val MINUTE = 60 * SECOND
+        val HOUR = 60 * MINUTE
+        val DAY = 24 * HOUR
         val interval = Date().time - postDate
         return when {
             interval < SECOND ->
@@ -58,21 +77,40 @@ data class Post(
 
     }
 
-    fun cutPostText(): String? {
+    /*fun cutPostText(): String? {
         return when {
             postText == null -> null
-            postText.length > 50 -> postText.substring(0, 50)+"..."
+            postText.length > 50 -> postText.substring(0, 300)+"..."
             else -> postText
         }
+    }*/
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeLong(id)
+        parcel.writeString(avatarUrl)
+        parcel.writeString(userName)
+        parcel.writeLong(postDate)
+        parcel.writeString(postText)
+        parcel.writeString(postImage)
+        parcel.writeByte(if (isUserLike) 1 else 0)
+        parcel.writeInt(likesCount)
+        parcel.writeInt(commentsCount)
+        parcel.writeInt(sharesCount)
     }
 
-    companion object {
-        const val SECOND = 1000L
-        const val MINUTE = 60 * SECOND
-        const val HOUR = 60 * MINUTE
-        const val DAY = 24 * HOUR
+    override fun describeContents(): Int {
+        return 0
     }
 
+    companion object CREATOR : Parcelable.Creator<Post> {
+        override fun createFromParcel(parcel: Parcel): Post {
+            return Post(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Post?> {
+            return arrayOfNulls(size)
+        }
+    }
 
 
 }
