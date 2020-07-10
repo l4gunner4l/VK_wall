@@ -46,10 +46,6 @@ data class Post(
     }
 
     fun getFormattedDate(): String {
-        val SECOND = 1000L
-        val MINUTE = 60 * SECOND
-        val HOUR = 60 * MINUTE
-        val DAY = 24 * HOUR
         val interval = Date().time - postDate
         return when {
             interval < SECOND ->
@@ -77,6 +73,7 @@ data class Post(
 
     }
 
+    // if post's text too large, we cut it
     /*fun cutPostText(): String? {
         return when {
             postText == null -> null
@@ -103,6 +100,13 @@ data class Post(
     }
 
     companion object CREATOR : Parcelable.Creator<Post> {
+
+        const val SECOND = 1000L
+        const val MINUTE = 60 * SECOND
+        const val HOUR = 60 * MINUTE
+        const val DAY = 24 * HOUR
+
+
         override fun createFromParcel(parcel: Parcel): Post {
             return Post(parcel)
         }
