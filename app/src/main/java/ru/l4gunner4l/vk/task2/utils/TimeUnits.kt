@@ -1,4 +1,4 @@
-package ru.l4gunner4l.vk.utils
+package ru.l4gunner4l.vk.task2.utils
 
 enum class TimeUnits {
     SECOND, MINUTE, HOUR, DAY;

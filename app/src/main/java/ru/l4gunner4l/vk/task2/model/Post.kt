@@ -1,9 +1,9 @@
-package ru.l4gunner4l.vk.model
+package ru.l4gunner4l.vk.task2.model
 
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import ru.l4gunner4l.vk.utils.TimeUnits
+import ru.l4gunner4l.vk.task2.utils.TimeUnits
 import java.text.SimpleDateFormat
 import java.util.*
 

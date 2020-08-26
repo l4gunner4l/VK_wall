@@ -6,15 +6,23 @@
 
     <dimen name="item_avatar_size">40dp</dimen>
 
+    <dimen name="text_size_big">22sp</dimen>
+    <dimen name="text_size_standard">18sp</dimen>
     <dimen name="text_size_medium">14sp</dimen>
     <dimen name="text_size_small">12sp</dimen>
 
     <dimen name="item_view_height">1dp</dimen>
     <dimen name="item_post_btn_padding">4dp</dimen>
 
+    <dimen name="sign_in_icon_size">100dp</dimen>
+
+    <dimen name="margin_super_huge">72dp</dimen>
+    <dimen name="margin_huge">32dp</dimen>
     <dimen name="margin_big">16dp</dimen>
     <dimen name="margin_medium">8dp</dimen>
     <dimen name="margin_small">4dp</dimen>
     <dimen name="margin_tiny">2dp</dimen>
     <dimen name="margin_zero">0dp</dimen>
+    <dimen name="divider_height">1dp</dimen>
+    <dimen name="dimen_profile_avatar_size">72dp</dimen>
 </resources>

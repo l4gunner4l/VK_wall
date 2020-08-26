@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_background"
+    tools:context=".task1.ProfileActivity">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/profile_app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/profile_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/color_background"
+            android:elevation="0dp"
+            app:titleTextColor="@color/color_text_dark"
+            tools:title="nikola.mikhaylov" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/margin_big" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/margin_big" />
+
+    <View
+        android:id="@+id/profile_divider"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/divider_height"
+        android:background="@color/color_grey_divider"
+        app:layout_constraintEnd_toEndOf="@id/guideline_end"
+        app:layout_constraintStart_toStartOf="@id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@id/profile_app_bar_layout" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_avatar"
+        android:layout_width="@dimen/dimen_profile_avatar_size"
+        android:layout_height="@dimen/dimen_profile_avatar_size"
+        android:layout_marginTop="@dimen/margin_big"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@+id/profile_divider"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/profile_full_name"
+        style="@style/BoldTextView"
+        android:layout_marginStart="@dimen/margin_medium"
+        app:layout_constraintEnd_toEndOf="@id/guideline_end"
+        app:layout_constraintStart_toEndOf="@id/profile_avatar"
+        app:layout_constraintTop_toTopOf="@id/profile_avatar"
+        tools:text="Nikola Mikhaylov" />
+
+    <TextView
+        android:id="@+id/profile_status"
+        style="@style/MediumTextView"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_small"
+        app:layout_constraintEnd_toEndOf="@id/guideline_end"
+        app:layout_constraintStart_toEndOf="@id/profile_avatar"
+        app:layout_constraintTop_toBottomOf="@id/profile_full_name"
+        tools:text="Не изменю статус, пока Арсенал не выйдет в финал ЛЧ (01.06.2015)" />
+
+    <TextView
+        android:id="@+id/profile_online"
+        style="@style/LightTextView"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_small"
+        app:layout_constraintEnd_toEndOf="@id/guideline_end"
+        app:layout_constraintStart_toEndOf="@id/profile_avatar"
+        app:layout_constraintTop_toBottomOf="@id/profile_status"
+        tools:text="online" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="profile_avatar,profile_online" />
+
+    <Button
+        android:id="@+id/profile_btn_edit"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="@dimen/margin_big"
+        android:background="@drawable/bg_button_not_enabled"
+        android:text="@string/edit"
+        android:textColor="@color/color_text_light"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/guideline_end"
+        app:layout_constraintStart_toStartOf="@id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@+id/barrier" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

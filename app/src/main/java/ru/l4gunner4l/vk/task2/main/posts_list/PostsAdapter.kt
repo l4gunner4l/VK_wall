@@ -1,4 +1,4 @@
-package ru.l4gunner4l.vk.posts_list
+package ru.l4gunner4l.vk.task2.main.posts_list
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -11,11 +11,11 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import ru.l4gunner4l.vk.R
-import ru.l4gunner4l.vk.model.Post
+import ru.l4gunner4l.vk.task2.model.Post
 
 class PostsAdapter(
     val ctx: Context,
-    var posts: MutableList<Post>,
+    private var posts: MutableList<Post>,
     var clickListener: PostClickListener
 ) : RecyclerView.Adapter<PostsAdapter.ViewHolder>() {
 
